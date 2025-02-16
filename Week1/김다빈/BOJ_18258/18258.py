@@ -42,6 +42,7 @@ def back():
 
 
 for _ in range(n):
+    # n의 값이 크기 때문에 input()으로 입력받으면 시간초과가 난다.
     cmd = list(sys.stdin.readline().split())
 
     if cmd[0] == "push":
