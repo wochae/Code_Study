@@ -16,14 +16,21 @@ public class Boj2164 {
         for (int i = 1; i <= N; i++) {
             queue.add(i);
         }
-        while(!queue.isEmpty()) {
-            int x = queue.poll();
-            if (queue.isEmpty()) {
-                bw.write(x + "\n");
-            } else {
-                queue.add(queue.poll());
-            }
+//
+//        while(!queue.isEmpty()) {
+//            int x = queue.poll();
+//            if (queue.isEmpty()) {
+//                bw.write(x + "\n");
+//            } else {
+//                queue.add(queue.poll());
+//            }
+//        }
+        while (queue.size() > 1) {
+            queue.poll();
+            int a = queue.poll();
+            queue.offer(a);
         }
+        bw.write(queue.poll() + "\n");
 
         bw.flush();
         bw.close();
