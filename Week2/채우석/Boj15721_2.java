@@ -3,7 +3,6 @@ package Week2.채우석;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Boj15721_2 {
@@ -14,41 +13,48 @@ public class Boj15721_2 {
         int T = Integer.parseInt(br.readLine()); // T가 B번째 나오는 인덱스 찾기
         int B = Integer.parseInt(br.readLine()); // 찾을 값 (0: 번, 1: 데기)
 
+        int count = 0;
+        int person = 0;
         int round = 1;
 
-        List<Integer> order = new ArrayList<>();
-        order.add(0);
-        order.add(1);
-        order.add(0);
-        order.add(1);
+        while(true) {
+            if (B == 0) {
+                count++; if (count == T) break;
+            }
+            person = (person + 1) % N;
+            if (B == 1) {
+                count++; if (count == T) break;
+            }
+            person = (person + 1) % N;
+            if (B == 0) {
+                count++; if (count == T) break;
+            }
+            person = (person + 1) % N;
+            if (B == 1) {
+                count++;
+                if (count == T) break;
+            }
+            person = (person + 1) % N;
 
-        while (round <= N) {
-            // (round + 1) 만큼 0 추가
+            // 2. 추가적인 "뻔 * round, 데기 * round"
             for (int i = 0; i < round + 1; i++) {
-                order.add(0);
+                if (B == 0) {
+                    count++; if (count == T) break;
+                }
+                person = (person + 1) % N;
             }
-            // (round + 1) 만큼 1 추가
+            if (count == T) break;
             for (int i = 0; i < round + 1; i++) {
-                order.add(1);
+                if (B == 1) {
+                    count++; if (count == T) break;
+                }
+                person = (person + 1) % N;
             }
+            if (count == T) break;
+
             round++;
         }
-
-        // 목표 값 찾기
-        int result = findNthOccur(order, T, B);
-        System.out.println(result);
+        System.out.println(person);
     }
 
-    public static int findNthOccur(List<Integer> arr, int target, int n) {
-        int count = 0;
-        for (int i = 0; i < arr.size(); i++) {
-            if (arr.get(i) == target) {
-                count++;
-                if (count == n) {
-                    return i;
-                }
-            }
-        }
-        return -1;
-    }
 }
