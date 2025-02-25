@@ -2,6 +2,26 @@ from collections import deque
 a, b = map(int, input().split())
 
 
+def greedy(a, b):
+    cnt = 1
+    # 맨 끝자리 숫자가 1이면 2가 아니라 1을 추가한 것
+    # 그외 에는 전부 2로 나눈 것
+    # 2로도 안나누어 떨어지면 못만드는 숫자
+    while a < b:
+        if b % 10 == 1:
+            b //= 10
+            cnt += 1
+        elif b % 2 == 0:
+            b //= 2
+            cnt += 1
+        else:
+            return -1
+
+    if a != b:
+        return -1
+    return cnt
+
+
 def bfs(x, target):
     queue = deque([(x, 1)])
     visited = set()
@@ -26,5 +46,8 @@ def bfs(x, target):
     return -1, -1
 
 
-num, cnt = bfs(a, b)
-print(cnt if num == b else -1)
+# num, cnt = bfs(a, b)
+# print(cnt if num == b else -1)
+
+result = greedy(a, b)
+print(result)
