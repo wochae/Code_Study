@@ -8,6 +8,7 @@ HB = 0
 count = [0] * 26 
 
 for i in range(M):
+    count = [0] * 26 
      
     for j in range(N):
         char = DNA[j][i] 
