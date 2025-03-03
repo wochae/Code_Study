@@ -10,7 +10,7 @@ for _ in range(N):
 
 numbers.sort(reverse=True)
 
-while K > 0 and i < N:
+while K > 0 :
     if numbers[i] <= K:
         count += K // numbers[i]  
         K %= numbers[i]  
